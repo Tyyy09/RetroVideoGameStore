@@ -1,0 +1,20 @@
+﻿@model IEnumerable<RetroVideoGameStore.Models.Category>
+@{
+    ViewData["Title"] = "Categories";
+}
+<h1>
+    Pick a category to browse our store
+</h1>
+<a asp-controller="Categories" asp-action="AddCategory">Add new category</a>
+
+<ul>
+    @foreach (var categories in Model)
+
+    {
+        <li>
+            <a asp-controller="Categories" asp-action="Browse" asp-route-categoryName="@categories.Name">@categories.Name</a>
+        </li>
+    }
+</ul>
+
+

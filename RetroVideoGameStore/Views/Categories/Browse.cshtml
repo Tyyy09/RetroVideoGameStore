@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Browse";
+}
+@if (ViewBag.categoriesName == null)
+{
+    <h1>please choose a category </h1>
+    <div>
+        <a asp-controller="Categories" asp-action="Index">Back</a>
+    </div>
+}else{
+    <h1>You are browsing on @ViewBag.categoriesName</h1>
+}
