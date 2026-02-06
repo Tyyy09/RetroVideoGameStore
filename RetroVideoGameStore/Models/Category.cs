@@ -2,7 +2,6 @@
 namespace RetroVideoGameStore.Models
 {
 
-
     public class Category
     {
         public int Id { get; set; }
@@ -10,5 +9,7 @@ namespace RetroVideoGameStore.Models
         [Required]
         public required string Name { get; set; }
         //add commen       
+        public List<Product>? Products { get; set; }
     }
+
 }

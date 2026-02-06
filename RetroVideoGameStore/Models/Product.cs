@@ -1,0 +1,20 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RetroVideoGameStore.Models
+{
+    public class Product
+    {
+        public int Id { get; set; }
+        [Required]
+        public required string Name { get; set; }
+        public double Price { get; set; }
+        public int CategoryId { get; set; }
+        public string? Photo { get; set; }
+        public string? Description { get; set; }
+
+
+        // Reference the child model (1 category -> many products)
+        public Category? Category { get; set; }
+
+    }
+}
