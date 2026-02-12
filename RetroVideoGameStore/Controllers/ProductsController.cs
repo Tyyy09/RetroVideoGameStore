@@ -23,7 +23,7 @@ namespace RetroVideoGameStore.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Products.Include(p => p.Category);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await applicationDbContext.OrderBy(p => p.Name).ToListAsync());
         }
 
         // GET: Products/Details/5
@@ -48,7 +48,7 @@ namespace RetroVideoGameStore.Controllers
         // GET: Products/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
+            ViewData["CategoryId"] = new SelectList(_context.Categories.OrderBy(c => c.Name ), "Id", "Name");
             return View();
         }
 
