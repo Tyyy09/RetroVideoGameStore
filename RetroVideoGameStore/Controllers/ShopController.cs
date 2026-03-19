@@ -119,5 +119,26 @@ namespace RetroVideoGameStore.Controllers
                 .ToList();
             return View(cartItems);
         }
+
+        // POST: /Shop/Checkout
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Checkout([Bind("FirstName,LastName,Address,City,Province,PostalCode,Phone")] Order order)
+        {
+            // Auto-fill the 3 properties we removed from the form
+            order.OrderDate = DateTime.Now;
+            order.CustomerId = User.Identity.Name;
+            order.OrderTotal = (from c in _context.Carts
+                                where c.CustomerId == HttpContext.Session.GetString("CustomerId")
+                                select c.Quantity * c.Price).Sum();
+
+            // We can't store the whole object in session (ASP.NET Core sessions don't store objects)
+            // Return a view (or redirect) so all paths return a value
+            return RedirectToAction("Payment");
+        }
+
+
     }
+
 }
