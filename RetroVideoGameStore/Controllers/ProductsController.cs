@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +28,7 @@ namespace RetroVideoGameStore.Controllers
             return View(await applicationDbContext.OrderBy(p => p.Name).ToListAsync());
         }
 
+        [AllowAnonymous]
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -104,7 +109,7 @@ namespace RetroVideoGameStore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,CategoryId,Photo,Description")] Product product, IFormFile Photo)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,CategoryId,Description")] Product product, IFormFile Photo)
         {
             if (id != product.Id)
             {
