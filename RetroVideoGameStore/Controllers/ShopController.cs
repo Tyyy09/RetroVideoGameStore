@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http; // for HttpContext.Session.GetString/SetString
 using RetroVideoGameStore.Data;
 using RetroVideoGameStore.Models;
+
 
 namespace RetroVideoGameStore.Controllers
 {
@@ -11,9 +13,17 @@ namespace RetroVideoGameStore.Controllers
         // DB connection
         private readonly ApplicationDbContext _context;
 
-        public ShopController(ApplicationDbContext context)
+
+        //Configuration dependency needed to read Striped API keys from appsetting.json
+        private IConfiguration _configuration;
+
+        // Connect to db whenever this controller is used
+        // This controller uses Dependency Injection, It need DB connection when it is created
+
+        public ShopController(ApplicationDbContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         public IActionResult Index()
@@ -134,10 +144,26 @@ namespace RetroVideoGameStore.Controllers
                                 select c.Quantity * c.Price).Sum();
 
             // We can't store the whole object in session (ASP.NET Core sessions don't store objects)
+            HttpContext.Session.SetObject("Order", order);
             // Return a view (or redirect) so all paths return a value
             return RedirectToAction("Payment");
         }
 
+
+        //GET: /shop/payment
+        [Authorize]
+        public IActionResult Payment()
+        {
+            //Get the order from the session variable
+            var order = HttpContext.Session.GetObject<Order>("Order");
+            //fetch and display the oredr total to the customer
+            ViewBag.Total = order.OrderTotal;
+            //we also need the publishablekey from the configuration
+            ViewBag.PublishKey = _configuration.GetSection("Stripe")["PublishableKey"];
+            //Load payment View
+
+            return View();
+        }
 
     }
 

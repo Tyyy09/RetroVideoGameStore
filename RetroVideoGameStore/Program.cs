@@ -23,6 +23,11 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 builder.Services.AddSession();
 builder.Services.AddControllersWithViews();
 
+// Inject the Configuration info to the controllers so the ShopController() can read API keys from appsettings.json
+// Register IConfiguration instance
+builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+
+
 // OAuth — only registers providers when secrets are present
 var authBuilder = builder.Services.AddAuthentication();
 
