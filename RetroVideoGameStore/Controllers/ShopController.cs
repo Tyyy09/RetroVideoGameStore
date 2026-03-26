@@ -150,6 +150,7 @@ namespace RetroVideoGameStore.Controllers
         }
 
 
+
         //GET: /shop/payment
         [Authorize]
         public IActionResult Payment()
