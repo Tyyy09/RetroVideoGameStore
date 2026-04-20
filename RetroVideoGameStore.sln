@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36908.2 d17.14
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11620.152 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RetroVideoGameStore", "RetroVideoGameStore\RetroVideoGameStore.csproj", "{ADFDFB88-5495-477C-8BB5-8FF09C017653}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RetroVideoGameStoreTest", "RetroVideoGameStoreTest\RetroVideoGameStoreTest.csproj", "{BAA449D8-1DCA-4554-8578-EC903095F01B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{ADFDFB88-5495-477C-8BB5-8FF09C017653}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADFDFB88-5495-477C-8BB5-8FF09C017653}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADFDFB88-5495-477C-8BB5-8FF09C017653}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAA449D8-1DCA-4554-8578-EC903095F01B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAA449D8-1DCA-4554-8578-EC903095F01B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAA449D8-1DCA-4554-8578-EC903095F01B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAA449D8-1DCA-4554-8578-EC903095F01B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

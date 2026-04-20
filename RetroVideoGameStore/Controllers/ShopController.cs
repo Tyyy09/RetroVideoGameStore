@@ -209,6 +209,8 @@ namespace RetroVideoGameStore.Controllers
                 _context.Carts.Remove(item);
             }
             _context.SaveChanges();
+            //clear the session itemCount variable for the order
+            HttpContext.Session.SetInt32("ItemCount", 0);
             // Load the Details page for the new order
             return RedirectToAction("Details", "Orders", new { @id = order.OrderId });
 

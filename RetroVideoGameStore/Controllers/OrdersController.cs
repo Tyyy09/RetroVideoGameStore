@@ -24,7 +24,7 @@ namespace RetroVideoGameStore.Controllers
         // GET: Orders
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Orders.Where(o => o.CustomerId == User.Identity.Name).ToListAsync());
+            return View(await _context.Orders.Where(o => o.CustomerId == User.Identity.Name).OrderByDescending(o => o.OrderId).ToListAsync());
         }
 
         // GET: Orders/Details/5
